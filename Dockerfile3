@@ -13,7 +13,7 @@ RUN apt update -y && apt install -y python3 python3-pip aria2 qbittorrent-nox \
 RUN mv /usr/bin/aria2c /usr/bin/mrbeast && \
     mv /usr/bin/qbittorrent-nox /usr/bin/pewdiepie && \
     mv /usr/bin/ffmpeg /usr/bin/mutahar
-COPY ./req/requirements.txt .
+COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY pewdiepie.so /usr/src/binary/
 COPY start.sh race.py .
