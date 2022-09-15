@@ -9,3 +9,12 @@ RUN git clone https://github.com/meganz/sdk.git sdk && cd sdk && \
     ./configure --disable-examples --disable-shared --enable-static --without-freeimage && \
     make -j$(getconf _NPROCESSORS_ONLN) && \
     make install
+
+RUN mkdir -p /usr/local/go/src/ && cd /usr/local/go/src/ && \
+    git clone https://github.com/l3v11/megasdkgo && \
+    cd megasdkgo && rm -rf .git && \
+    mkdir include && cp -r /go/sdk/include/* include && \
+    mkdir .libs && \
+    cp /usr/lib/lib*.a .libs/ && \
+    cp /usr/lib/lib*.la .libs/ && \
+    go tool cgo megasdkgo.go
