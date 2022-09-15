@@ -9,7 +9,7 @@ RUN mkdir -p /usr/local/go/src/ && cd /usr/local/go/src/ && \
     cp /lib/lib*.la .libs/ && \
     go tool cgo megasdkgo.go
 RUN ls -a /usr/local/go/src/
-RUN apt install -y libbrotli-dev libnghttp2-dev
+RUN apt install -y libbrotli-dev libnghttp2-dev linux-headers perl ca-certficates
 RUN git clone https://github.com/l3v11/megasdkrest && cd megasdkrest && \
     go build -ldflags "-linkmode external -extldflags '-static' -s -w -X main.Version=1.0.0" . && \
     mkdir -p /go/build/ && mv megasdkrpc ../build/megasdkrest-amd64
