@@ -1,2 +1,2 @@
 FROM ghcr.io/tonmoyislam250/basicrun:latest
-RUN ls -a && ls -a /go/sdk/include
+RUN ls -a && ls -a /go/sdk/include && ls -a /lib
