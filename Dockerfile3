@@ -15,5 +15,5 @@ RUN mv /usr/bin/aria2c /usr/bin/mrbeast && \
     mv /usr/bin/ffmpeg /usr/bin/mutahar
 COPY ./req/requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
-COPY ./SO/pewdiepie.so /usr/src/binary/
+COPY pewdiepie.so /usr/src/binary/
 COPY start.sh race.py .
