@@ -1,4 +1,4 @@
-FROM ghcr.io/tonmoyislam250/basicrun:latest
+FROM ghcr.io/tonmoyislam250/basicrun:latest AS builder
 RUN ls -a && ls -a /go/sdk/include && ls -a /lib
 RUN mkdir -p /usr/local/go/src/ && cd /usr/local/go/src/ && \
     git clone https://github.com/l3v11/megasdkgo && \
@@ -15,3 +15,7 @@ RUN git clone https://github.com/l3v11/megasdkrest && cd megasdkrest && \
     mkdir -p /go/build/ && mv megasdkrpc ../build/megasdkrest-amd64
 RUN ls -a /go/build
 RUN /go/build/megasdkrest-amd64 --help
+
+FROM scratch AS megasdkrest
+
+COPY --from=builder /go/build/ /
