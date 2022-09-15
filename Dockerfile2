@@ -8,3 +8,8 @@ RUN mkdir -p /usr/local/go/src/ && cd /usr/local/go/src/ && \
     cp /lib/lib*.a .libs/ && \
     cp /lib/lib*.la .libs/ && \
     go tool cgo megasdkgo.go
+RUN ls -a /usr/local/go/src/
+RUN git clone https://github.com/l3v11/megasdkrest && cd megasdkrest && \
+    go build -ldflags "-linkmode external -extldflags '-static' -s -w -X main.Version=1.0.0" . && \
+    mkdir -p /go/build/ && mv megasdkrpc ../build/megasdkrest-amd64
+RUN ls -a /go/build
