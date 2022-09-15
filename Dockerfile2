@@ -11,8 +11,8 @@ RUN mkdir -p /usr/local/go/src/ && cd /usr/local/go/src/ && \
 RUN ls -a /usr/local/go/src/
 RUN apt install -y libbrotli-dev libnghttp2-dev perl musl-dev
 RUN git clone https://github.com/l3v11/megasdkrest && cd megasdkrest && \
-    go get github.com/urfave/cli/v2 && \
-    go build -ldflags "-linkmode external -extldflags '-static' -s -w -X main.Version=1.0.0" . && \
+    go get github.com/mattn/go-sqlite3 && \
+    go build -ldflags "-linkmode external -extldflags '-static' -s -w -X main.Version=1.0.0" -tags sqlite_omit_load_extension . && \
     mkdir -p /go/build/ && mv megasdkrpc ../build/megasdkrest-amd64
 RUN ls -a /go/build
 RUN /go/build/megasdkrest-amd64 --help
