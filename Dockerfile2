@@ -1,2 +1,10 @@
 FROM ghcr.io/tonmoyislam250/basicrun:latest
 RUN ls -a && ls -a /go/sdk/include && ls -a /lib
+RUN mkdir -p /usr/local/go/src/ && cd /usr/local/go/src/ && \
+    git clone https://github.com/l3v11/megasdkgo && \
+    cd megasdkgo && rm -rf .git && \
+    mkdir include && cp -r /go/sdk/include/* include && \
+    mkdir .libs && \
+    cp /lib/lib*.a .libs/ && \
+    cp /lib/lib*.la .libs/ && \
+    go tool cgo megasdkgo.go
