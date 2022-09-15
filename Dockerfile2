@@ -1,2 +1,2 @@
 FROM ghcr.io/tonmoyislam250/basicrun:latest
-RUN find libmega.a
+RUN ls -a
